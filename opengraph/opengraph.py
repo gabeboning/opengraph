@@ -32,7 +32,7 @@ class OpenGraph(dict):
         
         dict.__init__(self)
                 
-        if url is not None:
+        if url is not None and html is None:
             self.fetch(url)
             
         if html is not None:
