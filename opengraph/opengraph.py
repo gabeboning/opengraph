@@ -19,7 +19,6 @@ class OpenGraph(dict):
     """
 
     required_attrs = ['title', 'type', 'image', 'url']
-    scrape = False
 
     def __init__(self, url=None, html=None, scrape=False, **kwargs):
         # If scrape == True, then will try to fetch missing attribtues
@@ -68,7 +67,6 @@ class OpenGraph(dict):
             for attr in self.required_attrs:
                 if not hasattr(self, attr):
                     try:
-                        print "scraping " + attr
                         self[attr] = getattr(self, 'scrape_%s' % attr)(doc)
                     except AttributeError:
                         pass
@@ -118,3 +116,5 @@ class OpenGraph(dict):
 
     def scrape_url(self, doc):
         return self._url
+
+
