@@ -68,6 +68,7 @@ class OpenGraph(dict):
             for attr in self.required_attrs:
                 if not hasattr(self, attr):
                     try:
+                        print "scraping " + attr
                         self[attr] = getattr(self, 'scrape_%s' % attr)(doc)
                     except AttributeError:
                         pass
